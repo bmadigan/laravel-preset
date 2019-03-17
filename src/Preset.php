@@ -4,6 +4,7 @@ namespace bmadigan\LaravelPreset;
 
 use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 use sixlive\DotenvEditor\DotenvEditor;
 use Illuminate\Foundation\Console\Presets\Preset as BasePreset;
 
@@ -173,6 +174,7 @@ class Preset extends BasePreset
 
     private function publishStubs()
     {
+        File::makeDirectory(app_path('Models'));
         copy(__DIR__.'/stubs/Models/Model.php', app_path('Models/Model.php'));
         copy(__DIR__.'/stubs/phpunit.xml', base_path('phpunit.xml'));
         copy(__DIR__.'/stubs/.php_cs', base_path('.php_cs'));
